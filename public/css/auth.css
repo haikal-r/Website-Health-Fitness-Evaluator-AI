@@ -1,0 +1,30 @@
+/* Custom styles for form elements */
+.form-input:focus {
+    outline: none;
+    border-color: #ef4444;
+    box-shadow: 0 0 0 1px #ef4444;
+}
+
+/* Responsive date input widths */
+.date-input {
+    width: 100%;
+    max-width: 80px;
+}
+
+@media (max-width: 640px) {
+    .date-input {
+        max-width: 70px;
+    }
+
+    .container-custom {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+/* Smooth transitions */
+.form-input,
+button {
+    transition: all 0.2s ease-in-out;
+}
+
