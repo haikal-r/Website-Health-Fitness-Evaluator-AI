@@ -16,15 +16,14 @@
                     Create your account to get started
                 </p>
             </div>
-            <form method="POST" action="" class="space-y-5">
+            <form action="{{ route('register.store') }}" method="POST" class="space-y-5">
                 @csrf
-
-                <!-- First Name -->
+                <!-- Name -->
                 <div class="space-y-1">
-                    <label for="first_name" class="block text-sm font-medium text-gray-700">
-                        First Name
+                    <label for="name" class="block text-sm font-medium text-gray-700">
+                        Name
                     </label>
-                    <input type="text" name="first_name" id="first_name" required
+                    <input type="text" name="name" id="name" required
                         class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
                 </div>
 
@@ -151,5 +150,3 @@
 @endif
 
 @endsection
-
-
