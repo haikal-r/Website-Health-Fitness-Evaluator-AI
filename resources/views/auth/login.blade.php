@@ -18,9 +18,8 @@
             <div class="text-center">
                 <h2 class="text-2xl font-bold text-gray-900 sm:text-3xl">Login</h2>
             </div>
-            <form method="POST" action="" class="space-y-6">
+            <form method="POST" action="{{ route('authentication') }}" class="space-y-6">
                 @csrf
-
                 <!-- Email Input -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">
@@ -77,7 +76,7 @@
                 <!-- Registration Link -->
                 <div class="text-sm text-left">
                     <span class="text-gray-600">Doesn't have an account?</span>
-                    <a href="{{ route('register') }}" class="font-medium text-primary hover:underline ml-1">
+                    <a href="{{ route('register.index') }}" class="font-medium text-primary hover:underline ml-1">
                         Register now
                     </a>
                 </div>
@@ -107,7 +106,7 @@
 
 <!-- Alert for error messages (optional) -->
 @if (session('error'))
-<div class="fixed bottom-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+<div class="fixed bottom-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
     <strong class="font-bold">Error!</strong>
     <span class="block sm:inline">{{ session('error') }}</span>
 </div>
