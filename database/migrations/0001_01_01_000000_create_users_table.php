@@ -15,9 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('age')->nullable();
+            $table->enum('gender', ['female', 'male']);
+            $table->integer('weight');
+            $table->integer('height');
+            $table->enum('fitness_goal', ['weight_loss', 'muscle_gain', 'weight_gain'])->nullable();
+            $table->date('birth_date');
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
 
