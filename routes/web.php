@@ -42,3 +42,6 @@ Route::get('/profile', function () {
 Route::get('/workout', function () {
     return view('workout');
 })->name('workout');
+Route::get('/results', function () {
+    return view('results');
+})->name('results');
