@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="bg-background flex justify-center items-center min-h-screen w-full  ">
-        <div class="bg-white m-auto  w-[600px] h-[700px] border bg-white shadow rounded-xl">
+        <div class="bg-white m-auto  w-[600px] h-[700px] border shadow rounded-xl">
 
-            <h1 class="font-bold text-4xl mt-14 text-center">What type of exercise do you like?</h1>
+            <h1 class="font-bold text-4xl mt-14 text-center">What is your training duration?</h1>
 
-            <p class="text-xl text-center mt-12">Choose the training criteria that suit you!</p>
+            <p class="text-xl text-center mt-12">How long do you usually exercise in one session?</p>
 
             <form action="" class="mt-14 ml-11">
                 <div class="relative flex flex-col rounded-xl ml-5">
@@ -37,7 +37,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="react-vertical">
-                            Yoga or Pilates 
+                            15 - 30  Minutes 
                             </label>
                             </div>
                         </label>
@@ -61,7 +61,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="vue-vertical">
-                            Cardio</label>
+                            30 - 45  Minutes</label>
                             </div>
                         </label>
                         </div>
@@ -84,7 +84,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="svelte-vertical">
-                            Strength training
+                            45 - 60  Minutes
                             </label>
                             </div>
                         </label>
@@ -109,7 +109,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="react-vertical">
-                            HIIT (High-Intensity Interval Training
+                            More than 60 minutes
                             </label>
                             </div>
                         </label>
@@ -120,8 +120,8 @@
             </form>
             
             <div class="mt-20 ml-16">
-                <button class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</button>
-                <button class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</button>
+                <a href="{{ route('questionner2') }}" class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</a>
+                <a href="{{ route('questionner4') }}" class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</a>
             </div>
         </div>
     </div>
