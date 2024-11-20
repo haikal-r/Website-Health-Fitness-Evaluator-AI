@@ -97,8 +97,8 @@
             </form>
             
             <div class="mt-20 ml-16">
-                <button class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</button>
-                <button class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</button>
+                <a href="{{ route('questionner1') }}" class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</a>
+                <a href="{{ route('questionner3') }}" class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</a>
             </div>
         </div>
     </div>
