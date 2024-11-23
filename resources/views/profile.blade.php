@@ -20,12 +20,12 @@
                 <div class="w-1/2">
                     <div class="flex flex-wrap gap-4 sm:gap-6">
                         <div class="flex items-center">
-                            <input type="radio" name="gender" id="male" value="male" {{ $profile['gender'] == 'Male' ? 'checked' : '' }}
+                            <input type="radio" name="gender" id="male" value="male" {{ $profile['gender'] == 'male' ? 'checked' : '' }}
                                 class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
                             <label for="male" class="ml-2 block text-sm text-gray-700">Male</label>
                         </div>
                         <div class="flex items-center">
-                            <input type="radio" name="gender" id="female" value="female" {{ $profile['gender'] == 'Female' ? 'checked' : '' }}
+                            <input type="radio" name="gender" id="female" value="female" {{ $profile['gender'] == 'female' ? 'checked' : '' }}
                                 class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
                             <label for="female" class="ml-2 block text-sm text-gray-700">Female</label>
                         </div>
@@ -73,12 +73,13 @@
                     <small class="w-full text-gray-500 font-medium max-w-[190px]">Your BMI can’t be edited as it is a function of your weight & height.</small>
 
                 </div>
-                <div class="w-1/2">
+                <div class="w-1/2 flex gap-3 items-center">
                     <input
                         type="text"
-                        value="{{ round($profile['weight'] / (($profile['height'] / 100) ** 2), 1) }}"
+                        value="{{ $profile['bmi'] }}"
                         class="form-input appearance-none block w-full max-w-[100px] px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm disabled:bg-slate-200"
                         disabled>
+                    <span class="text-gray-500 font-medium text-sm">({{ $profile['category'] }})</span>
                 </div>
             </div>
 
