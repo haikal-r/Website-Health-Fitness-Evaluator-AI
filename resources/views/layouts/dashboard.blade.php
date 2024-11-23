@@ -6,9 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
     @stack('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <title>@section('title') @show @hasSection('title') - @endif {{ config('app.name') }}</title>
 
@@ -17,7 +25,7 @@
 
 
 <body class="bg-background ">
-    <nav class="relative lg:flex hidden">
+    <nav class="z-50 relative lg:flex hidden">
         <div class="fixed top-0 left-0 min-h-screen bg-white z-50 border-e-[1.5px]">
             <div class="pt-5 px-8">
                 <img src="{{ asset('images/logo.png') }}" class="w-60 h-20" alt="">
