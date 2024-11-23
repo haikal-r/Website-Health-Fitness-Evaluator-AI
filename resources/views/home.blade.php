@@ -10,34 +10,35 @@
 </head>
 
 <body>
-    <nav class="py-7 px-8 flex justify-between items-center border">
-        <div class=" flex ">
-            <img class="w-60 h-20" src="{{ asset('images/logo.png') }}" alt="">
+    <header class="absolute top-0 left-0 right-0 z-50 bg-white border-b">
+        <div class="flex-none relative text-sm leading-6">
+            <nav class="mx-auto lg:max-w-screen-xl px-4  sm:px-6 lg:px-[75px]">
+                <div class="flex justify-between items-center py-2">
+                    <a href="/" class="md:flex hidden">
+                        <img class="w-60 h-20" src="{{ asset('images/logo.png') }}" alt="">
+                    </a>
+                    <div class="md:flex hidden lg:ms-16">
+                        <ul class="flex justify-between items-center gap-8 ">
+                            <li><a class="font-bold hover:text-primary text-base" href="">Home<a></li>
+                            <li><a class="font-bold hover:text-primary text-base" href="">Contact<a></li>
+                            <li><a class="font-bold hover:text-primary text-base" href="">About<a></li>
+                        </ul>
+                    </div>
+                    <a href="{{ route('login') }}" class="md:flex hidden w-full max-w-[120px] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">Login</a>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <div class="flex">
-            <ul class="flex justify-between items-center gap-24 ">
-                <li><a class="font-bold hover:text-primary text-lg " href="">Home<a></li>
-                <li><a class="font-bold hover:text-primary text-lg" href="">Contact<a></li>
-                <li><a class="font-bold hover:text-primary text-lg " href="">About<a></li>
-
-            </ul>
-        </div>
-
-        <div>
-            <a href="{{ route('login') }}" class="bg-primary px-16 py-2 rounded-lg hover:text-white text-black transition-all duration-200">Login</a>
-        </div>
-        <!-- <div class="border b-4 border-gray-600 items-center"></div> -->
-    </nav>
 
 
     <section class="mt-56">
         <div class=" flex justify-center item-center">
             <div class=" container grid-cols-12 px-40 ">
                 <h1 class="text-[50px] font-bold col-span-12 "><span class="text-primary">Improve</span> Your Healthy Lifestyle</h1>
-                <p class="col-span-12 text-[24px]px-40">Want to take control of your diet?
+                <p class="col-span-12 mb-4">Want to take control of your diet?
                     Track your meals, understand your habits, and achieve your goals effortlessly with our help.</p>
-                <button class=" rounded-lg py-2 px-16 bg-primary  hover:text-white text-black mt-7 mb-64 ">Get Started</button>
+                <button class="w-full max-w-[180px] me-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 ">Get Started</button>
 
             </div>
             <div>

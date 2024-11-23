@@ -45,7 +45,6 @@
                         class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
                 </div>
 
-                <!-- Confirm Password -->
                 <div class="space-y-1">
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
                         Confirm Password
@@ -54,8 +53,7 @@
                         class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
                 </div>
 
-                <!-- Gender -->
-                <div class="space-y-2">
+                <!-- <div class="space-y-2">
                     <label class="block text-sm font-medium text-gray-700">Gender</label>
                     <div class="flex flex-wrap gap-4 sm:gap-6">
                         <div class="flex items-center">
@@ -71,7 +69,6 @@
                     </div>
                 </div>
 
-                <!-- Date of Birth -->
                 <div class="space-y-2">
                     <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
                     <div class="flex items-center space-x-2">
@@ -86,9 +83,9 @@
                     </div>
                 </div>
 
-                <!-- Height and Weight Grid -->
+           
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Height -->
+                  
                     <div class="space-y-1">
                         <label class="block text-sm font-medium text-gray-700">Height</label>
                         <div class="flex items-center">
@@ -98,7 +95,7 @@
                         </div>
                     </div>
 
-                    <!-- Weight -->
+                    
                     <div class="space-y-1">
                         <label class="block text-sm font-medium text-gray-700">Weight</label>
                         <div class="flex items-center">
@@ -107,9 +104,8 @@
                             <span class="ml-2 text-sm text-gray-500">KG</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <!-- Submit Button -->
                 <div class="pt-2">
                     <button type="submit"
                         class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
@@ -117,7 +113,6 @@
                     </button>
                 </div>
 
-                <!-- Login Link -->
                 <div class="text-sm text-left pt-2">
                     <span class="text-gray-600">Already have an account?</span>
                     <a href="{{ route('login') }}" class="font-medium text-primary hover:underline ml-1">
