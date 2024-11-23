@@ -29,10 +29,10 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'gender' => 'required',
-            'height' => 'required|max:4',
-            'weight' => 'required|max:4',
-            'birth_date' => ['required', 'date', 'before:today'],
+            // 'gender' => 'required',
+            // 'height' => 'required|max:4',
+            // 'weight' => 'required|max:4',
+            // 'birth_date' => ['required', 'date', 'before:today'],
         ]);
 
 
@@ -40,10 +40,10 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'gender' => $request->gender,
-            'weight' => $request->weight,
-            'height' => $request->height,
-            'birth_date' => $request->birth_date
+            // 'gender' => $request->gender,
+            // 'weight' => $request->weight,
+            // 'height' => $request->height,
+            // 'birth_date' => $request->birth_date
         ]);
 
         if (!$user) {
