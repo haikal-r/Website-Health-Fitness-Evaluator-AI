@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
+    <!-- EXPERIENCE LEVEL -->
     <div class="bg-background flex justify-center items-center min-h-screen w-full  ">
         <div class="bg-white m-auto  w-[600px] h-[700px] border bg-white shadow rounded-xl">
 
