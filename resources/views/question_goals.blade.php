@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>questionner1</title>
+    <title>Question Goals</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <!-- EXPERIENCE LEVEL -->
+   
     <div class="bg-background flex justify-center items-center min-h-screen w-full  ">
         <div class="bg-white m-auto  w-[600px] h-[700px] border bg-white shadow rounded-xl">
 
-            <h1 class="font-bold text-4xl mt-11 text-center">What is your baseline activity level?</h1>
+            <h1 class="font-bold text-4xl mt-14 text-center">What are your Fitness Goals?</h1>
 
-            <p class="text-2xl text-center mt-12">Excluding sports–we count them separately</p>
+            <p class="text-xl text-center mt-12">Choose one of your main goals so we can 
+            can customize nutrition and 
+            exercise recommendations for you</p>
 
-            <form action="" class="mt-14">
+            <form action="" class="mt-14 ml-11">
                 <div class="relative flex flex-col rounded-xl ml-5">
                     <nav class="flex min-w-[240px] flex-col gap-1 p-2">
                         <div
@@ -38,7 +40,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="react-vertical">
-                             <span class="text-primary">Not Active</span> (Sitting down in most of the day (e.g. bank teller, working at a desk)
+                            Weight Loss 
                             </label>
                             </div>
                         </label>
@@ -62,9 +64,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="vue-vertical">
-                             <span class="text-primary">Quite Active</span>(Spending part of the day
-                            standing (e.g. teachers, salespeople))
-                            </label>
+                            Maintan Health</label>
                             </div>
                         </label>
                         </div>
@@ -87,7 +87,7 @@
                                 <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                             </label>
                             <label class="ml-2 font-bold cursor-pointer text-xl" for="svelte-vertical">
-                                <span class="text-primary">Active</span> (Spending part of the day in physical activity (e.g. waiter, postman)
+                            Gain Muscle
                             </label>
                             </div>
                         </label>
@@ -97,9 +97,9 @@
 
             </form>
             
-            <div class="mt-20 ml-16">
-                <button class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</button>
-                <button class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</button>
+            <div class="mt-40 ml-16">
+                <a href="{{ route('question_experience') }}" class="text-primary px-9 py-4 bg-white shadow border rounded-lg">Previous</a>
+                <a href="{{ route('question_bmi') }}" class="text-bold text-white bg-primary px-14 rounded-lg py-4 shadow border ml-44">Next</a>
             </div>
         </div>
     </div>

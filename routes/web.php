@@ -32,3 +32,33 @@ Route::prefix('/dashboard')->group(function () {
 });
 
 
+Route::get('/question_experience', function () {
+    return view('question_experience');
+})->name('question_experience');
+Route::get('/question_goals', function () {
+    return view('question_goals');
+})->name('question_goals');
+Route::get('/question_activity', function () {
+    return view('question_activity');
+})->name('question_activity');
+Route::get('/question_training', function () {
+    return view('question_training');
+})->name('question_training');
+Route::get('/question_accessibility', function () {
+    return view('question_accessibility');
+})->name('question_accessibility');
+Route::get('/question_bmi', function () {
+    return view('question_bmi');
+})->name('question_bmi');
+Route::get('/question_dietary', function () {
+    return view('question_dietary');
+})->name('question_dietary');
+Route::get('/question_dislike', function () {
+    return view('question_dislike');
+})->name('question_dislike');
+Route::get('/result', function () {
+    return view('result');
+})->name('result');
+Route::get('/question_last', function () {
+    return view('question_last');
+})->name('question_last');
