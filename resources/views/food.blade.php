@@ -5,55 +5,35 @@
 @section('content')
 <div class="flex flex-col bg-white shadow-md m-6 p-6">
 
-    <h1 class="text-2xl font-medium mb-6">Food</h1>
+    <div class="flex justify-between">
+        <h1 class="text-2xl font-medium mb-6">Food</h1>
+        
+    </div>
     <div class="ms-5">
-        <div class="flex justify-between mb-8">
-            <h1 class="font-medium text-xl">Breakfast</h1>
-            <div class="flex gap-[20px]">
-                <div class="flex items-center gap-1">
-                    <img src="{{ asset('icon/thunder.svg') }}" alt="icon" class="size-6">
-                    <p class="text-[#808080] text-[14px] font-medium">8 Exercise</p>
-                </div>
-                <div class="flex items-center gap-1">
-                    <img src="{{ asset('icon/clock.svg') }}" alt="icon" class="size-6">
-                    <p class="text-[#808080] text-[14px] font-medium">50-60 Min</p>
-                </div>
-                <div class="flex items-center gap-[2px]">
-                    <img src="{{ asset('icon/fire.svg') }}" alt="icon" class="size-6">
-                    <p class="text-[#808080] text-[14px] font-medium">8 Exercise</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- workout start -->
+
         <div class="flex flex-col ">
-            <div class="flex items-center gap-9">
-                <img src="{{ asset('images/pushup.png') }}" alt="Push Up">
+            @foreach($data as $mealPlan)
+            <h1 class="font-medium text-xl mb-8">{{ $mealPlan['type'] }}</h1>
+
+            @foreach($mealPlan['foods'] as $food)
+            <div class="flex items-center gap-9 mb-8">
+                <img src={{ $food['image'] }} alt="Push Up" class="w-1/3 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
                 <div>
-                    <h1 class="font-medium ">Push-Ups:</h1>
+                    <h1 class="font-medium ">{{ $food['name'] }}</h1>
                     <ul class="list-disc list-inside ms-4">
-                        <li>Sets: <span class="text-primary">3</span></li>
-                        <li>Reps: <span class="text-primary">6-10</span></li>
-                        <li>Rest: <span class="text-primary">90 seconds</span></li>
-                        <li>Target Muscle: <span class="text-primary">Back, Biceps</span></li>
+                        <li>Calories: <span class="!text-primary">{{ $food['calories'] }}</span></li>
+                        <li>Protein: <span class="!text-primary">{{ $food['protein'] }}</span></li>
+                        <li>Fats: <span class="!text-primary">{{ $food['fat'] }}</span></li>
+                        <li>Carbohydrates: <span class="!text-primary">{{ $food['carbs'] }}</span></li>
                     </ul>
                 </div>
             </div>
+            @endforeach
 
             <div class="border-b-2 border-dashed my-[32px]"></div>
+            @endforeach
 
-            <div class="flex items-center gap-9">
-                <img src="{{ asset('images/pullup.png') }}" alt="Push Up">
-                <div>
-                    <h1 class="font-medium ">Pull-up:</h1>
-                    <ul class="list-disc list-inside ms-4">
-                        <li>Sets: <span class="text-primary">3</span></li>
-                        <li>Reps: <span class="text-primary">6-10</span></li>
-                        <li>Rest: <span class="text-primary">90 seconds</span></li>
-                        <li>Target Muscle: <span class="text-primary">Back, Biceps</span></li>
-                    </ul>
-                </div>
-            </div>
 
         </div>
 

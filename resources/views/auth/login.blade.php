@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="bg-background min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <!-- Optional: Add your logo here -->
 
@@ -30,7 +30,7 @@
                             class="form-input appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                     </div>
                     @error('email')
-                    <p class="mt-2 text-sm text-primary">{{ $message }}</p>
+                    <p class="mt-2 text-sm !text-primary">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -44,7 +44,7 @@
                             class="form-input appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
                     </div>
                     @error('password')
-                    <p class="mt-2 text-sm text-primary">{{ $message }}</p>
+                    <p class="mt-2 text-sm !text-primary">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="text-sm">
-                        <a href="" class="font-medium text-primary hover:underline">
+                        <a href="" class="font-medium !text-primary hover:underline">
                             Forgot password?
                         </a>
                     </div>
@@ -67,8 +67,9 @@
 
                 <!-- Login Button -->
                 <div>
-                    <button type="submit"
-                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    <button 
+                        type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white !bg-primary hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                         Continue
                     </button>
                 </div>
@@ -76,29 +77,29 @@
                 <!-- Registration Link -->
                 <div class="text-sm text-left">
                     <span class="text-gray-600">Doesn't have an account?</span>
-                    <a href="{{ route('register.index') }}" class="font-medium text-primary hover:underline ml-1">
+                    <a href="{{ route('register.index') }}" class="font-medium !text-primary hover:underline ml-1">
                         Register now
                     </a>
                 </div>
 
                 <!-- Divider -->
-                <div class="relative my-6">
+                <!-- <div class="relative my-6">
                     <div class="absolute inset-0 flex items-center">
                         <div class="w-full border-t border-gray-300"></div>
                     </div>
                     <div class="relative flex justify-center text-sm">
                         <span class="px-2 bg-white text-gray-500">or</span>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Google Login Button -->
-                <div>
+                <!-- <div>
                     <button type="button"
                         class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                         <img src="{{ asset('images/google.svg') }}" alt="Google" class=" px-1">
                         Continue with Google
                     </button>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

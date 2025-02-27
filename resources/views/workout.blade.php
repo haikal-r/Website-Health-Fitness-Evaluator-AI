@@ -32,10 +32,10 @@
                 <div>
                     <h1 class="font-medium ">Push-Ups:</h1>
                     <ul class="list-disc list-inside ms-4">
-                        <li>Sets: <span class="text-primary">3</span></li>
-                        <li>Reps: <span class="text-primary">6-10</span></li>
-                        <li>Rest: <span class="text-primary">90 seconds</span></li>
-                        <li>Target Muscle: <span class="text-primary">Back, Biceps</span></li>
+                        <li>Sets: <span class="!text-primary">3</span></li>
+                        <li>Reps: <span class="!text-primary">6-10</span></li>
+                        <li>Rest: <span class="!text-primary">90 seconds</span></li>
+                        <li>Target Muscle: <span class="!text-primary">Back, Biceps</span></li>
                     </ul>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                 <div>
                     <h1 class="font-medium ">Pull-up:</h1>
                     <ul class="list-disc list-inside ms-4">
-                        <li>Sets: <span class="text-primary">3</span></li>
-                        <li>Reps: <span class="text-primary">6-10</span></li>
-                        <li>Rest: <span class="text-primary">90 seconds</span></li>
-                        <li>Target Muscle: <span class="text-primary">Back, Biceps</span></li>
+                        <li>Sets: <span class="!text-primary">3</span></li>
+                        <li>Reps: <span class="!text-primary">6-10</span></li>
+                        <li>Rest: <span class="!text-primary">90 seconds</span></li>
+                        <li>Target Muscle: <span class="!text-primary">Back, Biceps</span></li>
                     </ul>
                 </div>
             </div>

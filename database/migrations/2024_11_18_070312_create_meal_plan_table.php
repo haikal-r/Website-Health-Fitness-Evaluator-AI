@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('meal_plan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constant('users');
-            $table->foreignId('food_id')->constant('food');
             $table->enum('meal_time', ['breakfast', 'lunch', 'snack', 'dinner']);
             $table->timestamps();
         });
