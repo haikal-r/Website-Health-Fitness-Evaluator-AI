@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('meal_plan_id')->constant('meal_plan');
             $table->string('name');
+            $table->string('image');
             $table->decimal('calories');
             $table->decimal('protein');
             $table->decimal('fat');

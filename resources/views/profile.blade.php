@@ -12,7 +12,7 @@
 
     <div class="container">
         <h1 class="text-2xl font-medium mb-[21px]">Profile</h1>
-        <form method="POST" action="" class="w-full flex flex-col gap-6">
+        <form method="POST" action="{{ route('user.update') }}" class="w-full flex flex-col gap-6">
             @csrf
             <!-- Gender -->
             <div class="flex justify-between">
@@ -21,12 +21,12 @@
                     <div class="flex flex-wrap gap-4 sm:gap-6">
                         <div class="flex items-center">
                             <input type="radio" name="gender" id="male" value="male" {{ $profile['gender'] == 'male' ? 'checked' : '' }}
-                                class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
+                                class="h-4 w-4 !accent-primary !text-primary border-gray-300 focus:ring-red-500">
                             <label for="male" class="ml-2 block text-sm text-gray-700">Male</label>
                         </div>
                         <div class="flex items-center">
                             <input type="radio" name="gender" id="female" value="female" {{ $profile['gender'] == 'female' ? 'checked' : '' }}
-                                class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
+                                class="h-4 w-4 !accent-primary !text-primary border-gray-300 focus:ring-red-500">
                             <label for="female" class="ml-2 block text-sm text-gray-700">Female</label>
                         </div>
                     </div>
@@ -71,7 +71,6 @@
                 <div class="flex flex-col">
                     <label>BMI </label>
                     <small class="w-full text-gray-500 font-medium max-w-[190px]">Your BMI can’t be edited as it is a function of your weight & height.</small>
-
                 </div>
                 <div class="w-1/2 flex gap-3 items-center">
                     <input
@@ -87,7 +86,7 @@
             <div class="flex justify-between">
                 <div></div>
                 <div class="w-1/2">
-                    <button type="submit" class="w-1/3 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200y">Update</button>
+                    <button type="submit" class="w-1/3 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white !bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200y">Update</button>
 
                 </div>
             </div>

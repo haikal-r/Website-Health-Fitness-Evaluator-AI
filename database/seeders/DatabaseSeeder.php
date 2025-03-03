@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\BiodataUser;
+use App\Models\Progress;
 use App\Models\User;
+use App\Models\UserAnswers;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,19 +30,23 @@ class DatabaseSeeder extends Seeder
         BiodataUser::factory()->create([
             'id' => 1,
             'user_id' => 1,
-            'age' => 20,
-            'gender' => 'male',
             'weight' => 50,
             'height' => 175,
+            'gender' => 'male',
+            'age' => 19,
             'bmi' => $bmi,
             'birth_date' => '2005-10-11',
-            'fitness_goal' => 'muscle_gain',
             'experience_level' => 'beginner',
             'activity_level' => 'not_active',
-            'training_duration' => '20_minutes',
+            'training_duration' => '20_minute',
             'accessibility' => 'no_equipment',
             'dietary_preferences' => 'none',
-            'dislike_food' => 'fish'
+        ]);
+
+        Progress::factory()->create([
+            'id' => 1,
+            'user_id' => 1,
+            'weight' => 50
         ]);
     }
 }

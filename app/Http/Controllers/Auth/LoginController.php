@@ -25,11 +25,23 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard'); 
+            return to_route('dashboard')->with('success', 'Data has been saved!');; 
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
+            'email' => 'Email tidak ditemukan.',
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        
+        
+        Auth::logout();
+
+        $request->session()->invalidate(); 
+        $request->session()->regenerateToken(); 
+
+        return redirect('/login'); 
     }
 }

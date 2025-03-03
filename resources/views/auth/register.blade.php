@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="min-h-screen flex flex-col justify-center py-6 sm:py-12">
+<div class="bg-background min-h-screen flex flex-col justify-center py-6 sm:py-12">
     <div class="mt-8 sm:mx-auto w-full px-4 max-w-[90%] sm:max-w-md">
         <div class="bg-white py-6 px-8 shadow rounded-lg">
             <div class="text-center">
@@ -53,69 +53,16 @@
                         class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
                 </div>
 
-                <!-- <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Gender</label>
-                    <div class="flex flex-wrap gap-4 sm:gap-6">
-                        <div class="flex items-center">
-                            <input type="radio" name="gender" id="male" value="male"
-                                class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
-                            <label for="male" class="ml-2 block text-sm text-gray-700">Male</label>
-                        </div>
-                        <div class="flex items-center">
-                            <input type="radio" name="gender" id="female" value="female"
-                                class="h-4 w-4 accent-primary text-primary border-gray-300 focus:ring-red-500">
-                            <label for="female" class="ml-2 block text-sm text-gray-700">Female</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <div class="flex items-center space-x-2">
-                        <input type="text" name="birth_day" placeholder="DD" maxlength="2"
-                            class="date-input px-3 py-2 text-center border rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                        <span class="text-gray-500">/</span>
-                        <input type="text" name="birth_month" placeholder="MM" maxlength="2"
-                            class="date-input px-3 py-2 text-center border rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                        <span class="text-gray-500">/</span>
-                        <input type="text" name="birth_year" placeholder="YYYY" maxlength="4"
-                            class="date-input px-3 py-2 text-center border rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                    </div>
-                </div>
-
-           
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  
-                    <div class="space-y-1">
-                        <label class="block text-sm font-medium text-gray-700">Height</label>
-                        <div class="flex items-center">
-                            <input type="number" name="height"
-                                class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                            <span class="ml-2 text-sm text-gray-500">CM</span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="space-y-1">
-                        <label class="block text-sm font-medium text-gray-700">Weight</label>
-                        <div class="flex items-center">
-                            <input type="number" name="weight"
-                                class="form-input px-3 py-2 border block w-full rounded-md border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                            <span class="ml-2 text-sm text-gray-500">KG</span>
-                        </div>
-                    </div>
-                </div> -->
-
                 <div class="pt-2">
                     <button type="submit"
-                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white !bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
                         Continue
                     </button>
                 </div>
 
                 <div class="text-sm text-left pt-2">
                     <span class="text-gray-600">Already have an account?</span>
-                    <a href="{{ route('login') }}" class="font-medium text-primary hover:underline ml-1">
+                    <a href="{{ route('login') }}" class="font-medium !text-primary hover:underline ml-1">
                         Login here
                     </a>
                 </div>
