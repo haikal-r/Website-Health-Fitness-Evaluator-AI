@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/authentication', [LoginController::class, 'authentication'])->name('authentication');
