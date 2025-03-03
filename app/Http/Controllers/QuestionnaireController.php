@@ -225,7 +225,7 @@ class QuestionnaireController extends Controller
         if ($step == 6) {
             $birthDate = $request->answer[2] . '-' . $request->answer[1] . '-' . $request->answer[0];
             $birthDate = new DateTime($birthDate);
-            $today = new DateTime(); // Tanggal hari ini
+            $today = new DateTime(); 
             $age = $today->diff($birthDate)->y;
             BiodataUser::updateOrCreate(
                 ['user_id' => auth()->user()->id],
@@ -250,7 +250,6 @@ class QuestionnaireController extends Controller
 
     public function result(Request $request)
     {
-        // return view('result');
         try {
             $biodataUser = $request->user()->biodata;
 
@@ -259,18 +258,15 @@ class QuestionnaireController extends Controller
             }
 
             $userData = Arr::except($biodataUser->getAttributes(), ['id', 'user_id', 'created_at', 'updated_at']);
-            // dd($userData);
+
             $responseWorkout = Http::post(env('API_AI') . '/workout', $userData);
             $jsonWorkout = $responseWorkout->json();
             $dataWorkout = $jsonWorkout['data'];
-            // dd($dataWorkout);
 
             $responseWorkout = Http::post(env('API_AI') . '/food', $userData);
             $jsonFood = $responseWorkout->json();
-            // dd($jsonFood);
             $dataFood = $jsonFood['data'];
             
-
             $data = [
                 'workouts' => $dataWorkout['workouts'],
                 'foods' => [
