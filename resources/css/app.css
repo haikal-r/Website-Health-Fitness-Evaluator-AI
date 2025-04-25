@@ -1,9 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    font-family: "Roboto", sans-serif;
-}
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .stats-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .stats-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .feature-card,
+  .testimonial-card {
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover,
+  .testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .about-image,
+  .results-image {
+    transition: transform 0.5s ease;
+  }
+
+  .about-image:hover,
+  .results-image:hover {
+    transform: rotate(0) !important;
+  }
+
+  .step-card {
+    transition: transform 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: scale(1.05);
+  }
+
+  .social-icon {
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: translateY(-3px);
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(circle, white 1px, transparent 1px);
+    background-size: 20px 20px;
+  }

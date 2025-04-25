@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BiodataUser;
 use App\Models\Progress;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class DashboardController extends Controller
 
         $progressData = Progress::where('user_id', auth()->user()->id)->get();
         // $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        // $weights = [0, 0, 0, 0, 0, 0, 0]; 
+        // $weights = [0, 0, 0, 0, 0, 0, 0];
 
         // // Menyisipkan data berat badan sesuai dengan hari yang ada dalam data
         // foreach ($progressData as $data) {
@@ -73,5 +74,28 @@ class DashboardController extends Controller
             'userBMI' => $userBMI,
             'weights' => json_encode($latestWeekData)
         ]);
+    }
+
+    public function getStats()
+    {
+        $totalUsers = User::count();
+        $activeUsers = User::where('is_active', true)->count();
+
+        return response()->json([
+            'total_users' => $totalUsers,
+            'active_users' => $activeUsers,
+            // 'nutrition_plans' => $nutritionPlans,
+            // 'workout_plans' => $workoutPlans,
+        ]);
+    }
+
+    public function nutritionTrends()
+    {
+
+        return view('admin.nutrition-trends');
+    }
+    public function workoutAnalytic()
+    {
+        return view('admin.workout-analytic');
     }
 }

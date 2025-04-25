@@ -369,5 +369,4 @@
     });
 </script>
 @endpush
-@endsection
 
