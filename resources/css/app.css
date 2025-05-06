@@ -71,3 +71,28 @@ body {
     background-image: radial-gradient(circle, white 1px, transparent 1px);
     background-size: 20px 20px;
   }
+
+
+  body {
+    font-family: 'Inter', sans-serif;
+}
+
+.animate-float {
+    animation: float 20s ease-in-out infinite alternate;
+}
+
+.animate-float-reverse {
+    animation: float 25s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(-70px, 70px);
+    }
+    100% {
+        transform: translate(70px, -70px);
+    }
+}

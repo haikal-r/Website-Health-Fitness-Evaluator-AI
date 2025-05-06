@@ -7,7 +7,7 @@
 
     <div class="flex justify-between">
         <h1 class="text-2xl font-medium mb-6">Food</h1>
-        
+
     </div>
     <div class="ms-5">
 

@@ -7,31 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite('resources/css/app.css')
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .animate-float {
-            animation: float 20s ease-in-out infinite alternate;
-        }
-
-        .animate-float-reverse {
-            animation: float 25s ease-in-out infinite alternate-reverse;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0px, 0px);
-            }
-            50% {
-                transform: translate(-70px, 70px);
-            }
-            100% {
-                transform: translate(70px, -70px);
-            }
-        }
-    </style>
 </head>
 <body class="relative min-h-screen w-full flex items-center justify-center bg-slate-950 overflow-hidden">
     <!-- Animated background elements -->
