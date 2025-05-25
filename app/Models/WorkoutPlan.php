@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealPlan extends Model
+class WorkoutPlan extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function foods()
+    public function workouts()
     {
-        return $this->belongsToMany(Food::class, 'pivot_meal_plan')->withPivot('meal_time');
+        return $this->belongsToMany(Workout::class, 'pivot_workout_plan');
     }
 }

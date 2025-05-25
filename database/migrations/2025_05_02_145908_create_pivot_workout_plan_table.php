@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('food', function (Blueprint $table) {
+        Schema::create('pivot_workout_plan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('meal_plan_id')->constant('meal_plan');
-            $table->string('name');
-            $table->string('image');
-            $table->decimal('calories');
-            $table->decimal('protein');
-            $table->decimal('fat');
-            $table->decimal('carbs');
+            $table->foreignId('workout_plan_id')->constant('workout_plans')->onDelete('cascade');
+            $table->foreignId('workout_id')->constant('workouts')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('food');
+        Schema::dropIfExists('pivot_workout_plan');
     }
 };
