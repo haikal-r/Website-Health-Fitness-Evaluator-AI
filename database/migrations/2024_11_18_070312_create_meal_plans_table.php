@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('meal_plan', function (Blueprint $table) {
+        Schema::create('meal_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constant('users');
-            $table->enum('meal_time', ['breakfast', 'lunch', 'snack', 'dinner']);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('meal_plan');
+        Schema::dropIfExists('meal_plans');
     }
 };

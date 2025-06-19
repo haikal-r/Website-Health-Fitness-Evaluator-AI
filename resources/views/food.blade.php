@@ -17,6 +17,7 @@
             <h1 class="font-medium text-xl mb-8">{{ $mealPlan['type'] }}</h1>
 
             @foreach($mealPlan['foods'] as $food)
+
             <div class="flex items-center gap-9 mb-8">
                 <img src={{ $food['image'] }} alt="Push Up" class="w-1/3 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
                 <div>

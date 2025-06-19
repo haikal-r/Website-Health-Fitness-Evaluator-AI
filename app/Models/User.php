@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(BiodataUser::class);
     }
+
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
+    }
 }

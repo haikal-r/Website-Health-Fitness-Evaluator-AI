@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\BiodataUser;
+use App\Models\Food;
+use App\Models\HistoryPlan;
 use App\Models\MealPlan;
+use App\Models\Plan;
 use App\Models\Progress;
+use App\Models\User;
+use App\Models\Workout;
+use App\Models\WorkoutPlan;
+use App\Services\GlobalService;
 use DateTime;
 use Faker\Provider\Biased;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
-class QuestionnaireController extends Controller
+class QuestionnaireController extends BaseController
 {
 
     protected $questions = [
@@ -153,13 +161,13 @@ class QuestionnaireController extends Controller
         // BMI question
         if ($step == 5) {
             $biodata = BiodataUser::select('weight', 'height')
-                ->where('user_id', auth()->user()->id)
+                ->where('user_id', $this->user->id)
                 ->first();
         }
 
         if ($step == 6) {
             $biodata = BiodataUser::select('birth_date')
-                ->where('user_id', auth()->user()->id)
+                ->where('user_id', $this->user->id)
                 ->first();
 
             if ($biodata->birth_date != null) {
@@ -170,7 +178,7 @@ class QuestionnaireController extends Controller
         // Options question
         if ($step != 5 && $step != 6 && $step != 8) {
             $label = $questions[$step]['label'];
-            $userAnswer = BiodataUser::where('user_id', auth()->user()->id)->value($label);
+            $userAnswer = BiodataUser::where('user_id', $this->user->id)->value($label);
         }
 
         return view('questionner', [
@@ -206,7 +214,7 @@ class QuestionnaireController extends Controller
             $bmi = round($weight / ($heightInMeters ** 2), 2);
 
             BiodataUser::updateOrCreate(
-                ['user_id' => auth()->user()->id],
+                ['user_id' => $this->user->id],
                 [
                     'weight' => $weight,
                     'height' => $height,
@@ -215,7 +223,7 @@ class QuestionnaireController extends Controller
             );
 
             Progress::updateOrCreate(
-                ['user_id' => auth()->user()->id],
+                ['user_id' => $this->user->id],
                 ['weight' => $weight],
             );
 
@@ -225,10 +233,10 @@ class QuestionnaireController extends Controller
         if ($step == 6) {
             $birthDate = $request->answer[2] . '-' . $request->answer[1] . '-' . $request->answer[0];
             $birthDate = new DateTime($birthDate);
-            $today = new DateTime(); 
+            $today = new DateTime();
             $age = $today->diff($birthDate)->y;
             BiodataUser::updateOrCreate(
-                ['user_id' => auth()->user()->id],
+                ['user_id' => $this->user->id],
                 [
                     'birth_date' => $birthDate,
                     'age' => $age
@@ -241,84 +249,280 @@ class QuestionnaireController extends Controller
         $answer = $request->answer;
 
         BiodataUser::updateOrCreate(
-            ['user_id' => auth()->user()->id],
+            ['user_id' => $this->user->id],
             [$label => $answer],
         );
 
         return redirect()->route('questionnaire.show', $step + 1);
     }
 
-    public function result(Request $request)
+    // public function result(Request $request)
+    // {
+    //     try {
+    //         $biodataUser = $request->user()->biodata;
+
+    //         if (!$biodataUser) {
+    //             return redirect('questionnaire/1')->with('error', 'Please fill out all of the question');
+    //         }
+
+    //         $userData = Arr::except($biodataUser->getAttributes(), ['id', 'user_id', 'created_at', 'updated_at']);
+
+    //         $responseWorkout = Http::post(env('API_AI') . '/workout', $userData);
+    //         $jsonWorkout = $responseWorkout->json();
+    //         $dataWorkout = $jsonWorkout['data'];
+
+    //         $responseWorkout = Http::post(env('API_AI') . '/food', $userData);
+    //         $jsonFood = $responseWorkout->json();
+    //         $dataFood = $jsonFood['data'];
+
+    //         $mealPlanId = null;
+    //         $workoutPlanId = null;
+
+    //         $data = [
+    //             'workouts' => $dataWorkout['workouts'],
+    //             'foods' => [
+    //                 [
+    //                     'type' => $dataFood[0]['type'],
+    //                     'foods' => $dataFood[0]['breakfast']
+    //                 ],
+    //                 [
+    //                     'type' => $dataFood[1]['type'],
+    //                     'foods' => $dataFood[1]['lunch']
+    //                 ],
+    //                 [
+    //                     'type' => $dataFood[2]['type'],
+    //                     'foods' => $dataFood[2]['dinner']
+    //                 ],
+    //             ]
+    //         ];
+
+    //         $existingMealPlan = MealPlan::where('user_id', $this->user->id)->first();
+    //         $existingWorkoutPlan = WorkoutPlan::where('user_id', $this->user->id)->first();
+    //         $processedWorkouts = [];
+    //         $processedFoods = [];
+
+    //         if (!$existingMealPlan && !$existingWorkoutPlan) {
+    //             foreach ($data['workouts'] as $workout) {
+    //                 $processedWorkout = Workout::updateOrCreate(
+    //                     [
+    //                         'name' => $workout['workout_name'],
+    //                     ],
+    //                     [
+    //                         'image' => $workout['image'],
+    //                         'difficulty' => $workout['difficulty'] ?? null,
+    //                         'muscle_group' => $workout['muscle_group'] ?? null,
+    //                         'duration' => $workout['duration'] ?? null,
+    //                         'repitition' => $workout['repitition'] ?? null,
+    //                     ]
+    //                 );
+
+    //                 $processedWorkouts[] = $processedWorkout->toArray();
+
+    //             }
+    //             $workoutPlan = WorkoutPlan::create([
+    //                 'user_id' => $this->user->id,
+    //                 'is_active' => true,
+    //             ]);
+
+    //             $workoutData = array_map(function ($workout) {
+    //                 return [
+    //                     'workout_id' => $workout['id'],
+    //                     'created_at' => now(),
+    //                     'updated_at' => now()
+    //                 ];
+    //             }, $processedWorkouts);
+
+    //             $workoutPlan->workouts()->attach($workoutData);
+
+    //             foreach ($data['foods'] as $mealPlanData) {
+
+    //                 foreach ($mealPlanData['foods'] as $food) {
+    //                     $processedFood = Food::updateOrCreate(
+    //                         [
+    //                             'name' => $food['name'],
+    //                         ],
+    //                         [
+    //                             'name' => $food['name'],
+    //                             'image' => $food['image'],
+    //                             'calories' => $food['nutrition']['Calories'],
+    //                             'carbs' => $food['nutrition']['Carbohydrate (g)'],
+    //                             'fat' => $food['nutrition']['Fat (g)'],
+    //                             'protein' => $food['nutrition']['Protein (g)'],
+    //                         ]
+    //                     );
+
+    //                     $processedFood['meal_time'] = $mealPlanData['type'];
+
+    //                     $processedFoods[] = $processedFood->toArray();
+    //                 }
+    //             }
+
+    //             $mealPlan = MealPlan::create([
+    //                 'user_id' => $this->user->id,
+    //                 'is_active' => true,
+    //             ]);
+
+    //             $mealData = array_map(function ($food) {
+    //                 return [
+    //                     'food_id' => $food['id'],
+    //                     'meal_time' => $food['meal_time'],
+    //                     'created_at' => now(),
+    //                     'updated_at' => now()
+    //                 ];
+    //             }, $processedFoods);
+
+    //             $mealPlan->foods()->attach($mealData);
+    //         }   
+
+    //         return view('result', compact('data'));
+    //     } catch (\Throwable $th) {
+    //         dd($th->getMessage());
+    //         return back()->with('error', 'An unexpected error occurred. Please contact admin.');
+    //     }
+    // }
+
+    public function result(Request $request, GlobalService $service)
     {
         try {
-            $biodataUser = $request->user()->biodata;
+            $this->validateUserBiodata($request->user());
 
-            if (!$biodataUser) {
-                return redirect('questionnaire/1')->with('error', 'Please fill out all of the question');
-            }
-
-            $userData = Arr::except($biodataUser->getAttributes(), ['id', 'user_id', 'created_at', 'updated_at']);
-
-            $responseWorkout = Http::post(env('API_AI') . '/workout', $userData);
-            $jsonWorkout = $responseWorkout->json();
-            $dataWorkout = $jsonWorkout['data'];
-
-            $responseWorkout = Http::post(env('API_AI') . '/food', $userData);
-            $jsonFood = $responseWorkout->json();
-            $dataFood = $jsonFood['data'];
-            
+            $userData = $this->getFilteredUserData($request->user());
             $data = [
-                'workouts' => $dataWorkout['workouts'],
-                'foods' => [
-                    [
-                        'type' => $dataFood[0]['type'],
-                        'foods' => $dataFood[0]['breakfast']
-                    ],
-                    [
-                        'type' => $dataFood[1]['type'],
-                        'foods' => $dataFood[1]['lunch']
-                    ],
-                    [
-                        'type' => $dataFood[2]['type'],
-                        'foods' => $dataFood[2]['dinner']
-                    ],
-                ]
+                'workouts' => $this->fetchWorkoutRecommendations($userData),
+                'foods' => $this->fetchFoodRecommendations($userData),
             ];
 
-            $existingMealPlan = MealPlan::where('user_id', auth()->user()->id)->first();
-
-            if(!$existingMealPlan) {
-                foreach ($data['foods'] as $mealPlanData) {
-                    // Simpan MealPlan terlebih dahulu
-                    $mealPlan = MealPlan::create([
-                        'meal_time' => $mealPlanData['type'],
-                        'user_id' => auth()->user()->id
-                    ]);
-
-                    // Simpan Foods yang terkait dengan MealPlan
-                    foreach ($mealPlanData['foods'] as $food) {
-                        $mealPlan->foods()->updateOrCreate(
-                            [
-                                'name' => $food['name'],  // Kriteria pencarian berdasarkan nama makanan
-                            ],
-                            [
-                                'image' => $food['image'],
-                                'calories' => $food['nutrition']['Calories'],  // Jika ditemukan, update nutrisi, jika tidak, buat baru
-                                'carbs' => $food['nutrition']['Carbohydrate (g)'],
-                                'fat' => $food['nutrition']['Fat (g)'],
-                                'protein' => $food['nutrition']['Protein (g)'],
-                            ]
-                        );
-                    }
-                }
+            if (!$this->userHasExistingPlans()) {
+                $this->createUserPlans($data);
             }
-
-
 
             return view('result', compact('data'));
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            dd('Result generation failed: ' . $th->getMessage());
             return back()->with('error', 'An unexpected error occurred. Please contact admin.');
         }
+    }
+
+    // Supporting private methods
+    private function validateUserBiodata(User $user): void
+    {
+        if (!$user->biodata) {
+            throw new \Exception('Biodata not completed');
+        }
+    }
+
+    private function getFilteredUserData(User $user): array
+    {
+        return Arr::except($user->biodata->getAttributes(), [
+            'id',
+            'user_id',
+            'created_at',
+            'updated_at'
+        ]);
+    }
+
+    private function fetchWorkoutRecommendations(array $userData): array
+    {
+        $response = Http::post(env('API_AI') . '/workout', $userData);
+        return $response->throw()->json()['data']['workouts'];
+    }
+
+    private function fetchFoodRecommendations(array $userData): array
+    {
+        $response = Http::post(env('API_AI') . '/food', $userData);
+        $data = $response->throw()->json()['data'];
+
+        return [
+            [
+                'type' => $data[0]['type'],
+                'foods' => $data[0]['breakfast']
+            ],
+            [
+                'type' => $data[1]['type'],
+                'foods' => $data[1]['lunch']
+            ],
+            [
+                'type' => $data[2]['type'],
+                'foods' => $data[2]['dinner']
+            ],
+        ];
+    }
+
+    private function userHasExistingPlans(): bool
+    {
+        return MealPlan::where('user_id', $this->user->id)->exists() ||
+            WorkoutPlan::where('user_id', $this->user->id)->exists();
+    }
+
+    private function createUserPlans(array $data): void
+    {
+        DB::transaction(function () use ($data) {
+            $this->createWorkoutPlan($data['workouts']);
+            $this->createMealPlan($data['foods']);
+        });
+    }
+
+    private function createWorkoutPlan(array $workouts): WorkoutPlan
+    {
+        $processedWorkouts = collect($workouts)->map(function ($workout) {
+            $processed = Workout::updateOrCreate(
+                ['name' => $workout['workout_name']],
+                [
+                    'image' => $workout['image'],
+                    'difficulty' => $workout['difficulty'] ?? null,
+                    'muscle_group' => $workout['muscle_group'] ?? null,
+                    'duration' => $workout['duration'] ?? null,
+                    'repitition' => $workout['repitition'] ?? null,
+                ]
+            );
+            return ['workout_id' => $processed->id];
+        });
+
+        $workoutPlan = WorkoutPlan::create([
+            'user_id' => $this->user->id,
+            'is_active' => true,
+        ]);
+
+        $workoutPlan->workouts()->attach(
+            $processedWorkouts->all(),
+            ['created_at' => now(), 'updated_at' => now()]
+        );
+
+        return $workoutPlan;
+    }
+
+    private function createMealPlan(array $mealPlans): MealPlan
+    {
+        $processedFoods = collect($mealPlans)->flatMap(function ($mealPlan) {
+            return collect($mealPlan['foods'])->map(function ($food) use ($mealPlan) {
+                $processed = Food::updateOrCreate(
+                    ['name' => $food['name']],
+                    [
+                        'image' => $food['image'],
+                        'calories' => $food['nutrition']['Calories'],
+                        'carbs' => $food['nutrition']['Carbohydrate (g)'],
+                        'fat' => $food['nutrition']['Fat (g)'],
+                        'protein' => $food['nutrition']['Protein (g)'],
+                    ]
+                );
+
+                return [
+                    'food_id' => $processed->id,
+                    'meal_time' => $mealPlan['type']
+                ];
+            });
+        });
+
+        $mealPlan = MealPlan::create([
+            'user_id' => $this->user->id,
+            'is_active' => true,
+        ]);
+
+        $mealPlan->foods()->attach(
+            $processedFoods->all(),
+            ['created_at' => now(), 'updated_at' => now()]
+        );
+
+        return $mealPlan;
     }
 }

@@ -1,4 +1,4 @@
-<header class="w-full py-3 px-4 md:px-8">
+<header class="w-full py-3 px-4 md:px-8 ">
     <div class="container mx-auto flex items-center justify-between">
         <a href="{{ url('/') }}" class="flex items-center">
             <img src="{{ asset('images/logo.png') }}" alt="EvaluatorAI Logo" class="h-16">

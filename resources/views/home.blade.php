@@ -9,8 +9,8 @@
 @include('layouts.components.navbar')
 
 <!-- Hero Section -->
-<section class="relative w-full h-[700px]">
-    <div class="absolute inset-0 z-0">
+<section class="relative w-full h-[700px] !bg-white">
+    <div class="absolute inset-0 z-0 ">
       <div class="container mx-auto h-full px-6 md:px-0">
         <div class="h-full w-full relative">
           <img

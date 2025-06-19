@@ -21,5 +21,13 @@ class UserSeeder extends Seeder
             'created_at'    => date('Y-m-d H:i:s'),
             'updated_at'    => date('Y-m-d H:i:s')
         ]);
+
+        User::create([
+            'name'          => 'test',
+            'email'      => 'test@gmail.com',
+            'password'      => bcrypt('test123'),
+            'created_at'    => date('Y-m-d H:i:s'),
+            'updated_at'    => date('Y-m-d H:i:s')
+        ]);
     }
 }

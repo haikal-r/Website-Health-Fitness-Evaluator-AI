@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workout_plan', function (Blueprint $table) {
+        Schema::create('workout_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constant('users');
-            $table->foreignId('workout_id')->constant('workout');
-            $table->enum('workout_time', ['morning', 'afternoon', 'evening', 'night']);
+            $table->boolean('is_active')->default(false); 
             $table->timestamps(); 
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workout_plan');
+        Schema::dropIfExists('workout_plans');
     }
 };

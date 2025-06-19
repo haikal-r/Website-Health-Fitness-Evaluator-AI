@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     public function edit()
     {
         $user = Auth::user();
-        $biodataUser = BiodataUser::where('user_id', $user->id)->first();
+        $biodataUser = BiodataUser::where('user_id', $this->user->id)->first();
 
         [$year, $month, $day] = explode('-', $biodataUser->birth_date);
         $bmi = $biodataUser->bmi;
@@ -53,18 +53,9 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // $request->validate([
-        //     'gender' => 'required|in:male,female',
-        //     'birthday.day' => 'required|integer|min:1|max:31',
-        //     'birthday.month' => 'required|integer|min:1|max:12',
-        //     'birthday.year' => 'required|integer|min:1900|max:' . date('Y'),
-        //     'height' => 'required|integer|min:50|max:250',
-        //     'weight' => 'required|integer|min:10|max:500',
-        // ]);
-
         $birthDate = $request->birth_year . '-' . $request->birth_month . '-' . $request->birth_day;
 
-        $biodataUser = BiodataUser::where('user_id', auth()->user()->id)->first();
+        $biodataUser = BiodataUser::where('user_id', $this->user->id)->first();
 
         $biodataUser->update([
             'gender' => $request->gender,
@@ -78,7 +69,7 @@ class UserController extends Controller
 
     public function updateWeight(Request $request)
     {
-        $biodataUser = BiodataUser::where('user_id', auth()->user()->id)->first();
+        $biodataUser = BiodataUser::where('user_id', $this->user->id)->first();
         $height = $biodataUser->height;
 
         $heightInMeters = $height / 100;
@@ -90,7 +81,7 @@ class UserController extends Controller
         ]);
 
         Progress::create([
-            'user_id' => auth()->user()->id,
+            'user_id' => $this->user->id,
             'weight' => $request->weight
         ]);
 
