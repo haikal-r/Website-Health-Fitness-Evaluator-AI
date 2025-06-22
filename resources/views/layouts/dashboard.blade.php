@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('layouts.components.head')
 
-<body class="bg-background min-h-screen">
+<body class="bg-white min-h-screen">
     @include('layouts.components.sidebar')
 
     <div class="lg:ms-[310px] flex flex-col justify-center mt-[65px]">
