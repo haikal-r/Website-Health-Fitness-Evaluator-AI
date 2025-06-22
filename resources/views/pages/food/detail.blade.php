@@ -19,7 +19,7 @@
             @foreach($mealPlan['foods'] as $food)
 
             <div class="flex items-center gap-9 mb-8">
-                <img src={{ $food['image'] }} alt="Push Up" class="w-1/3 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
+                <img src={{ $food['image'] }} alt="Push Up" class="w-1/5 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
                 <div>
                     <h1 class="font-medium ">{{ $food['name'] }}</h1>
                     <ul class="list-disc list-inside ms-4">
