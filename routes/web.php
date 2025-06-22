@@ -31,7 +31,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/profile', [UserController::class, 'edit'])->name('profile');
         Route::get('/food', [FoodController::class, 'index'])->name('food.index');
+        Route::get('/food/{id}', [FoodController::class, 'show'])->name('food.show');
         Route::get('/workout', [WorkoutController::class, 'index'])->name('workout.index');
+        Route::get('/workout/{id}', [WorkoutController::class, 'show'])->name('workout.show');
+
     });
 
     Route::post('/user/update', [UserController::class, 'update'])->name('user.update');
