@@ -15,4 +15,9 @@ class MealPlan extends Model
     {
         return $this->belongsToMany(Food::class, 'pivot_meal_plan')->withPivot('meal_time');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

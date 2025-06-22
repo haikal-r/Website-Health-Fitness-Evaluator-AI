@@ -15,4 +15,9 @@ class WorkoutPlan extends Model
     {
         return $this->belongsToMany(Workout::class, 'pivot_workout_plan');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

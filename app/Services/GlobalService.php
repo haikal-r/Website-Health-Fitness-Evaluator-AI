@@ -15,11 +15,11 @@ class GlobalService
         $this->user = auth()->user() ?? null;
     }
 
-    public function getDataMealPlan()
+    public function getDataMealPlan($id)
     {
         return Food::with([
-            'mealPlans' => function ($query) {
-                $query->where('user_id', $this->user->id)->where('is_active', 1);
+            'mealPlans' => function ($query) use ($id) {
+                $query->where('meal_plans.id', $id);
             }
         ])
             ->get()
@@ -39,11 +39,11 @@ class GlobalService
             ->values();
     }
 
-    public function getDataWorkoutPlan()
+    public function getDataWorkoutPlan(string $id)
     {
         return Workout::with([
-            'workoutPlans' => function ($query) {
-                $query->where('user_id', $this->user->id)->where('is_active', 1);
+            'workoutPlans' => function ($query) use ($id) {
+                $query->where('workout_plans.id', $id);
             }
         ])
             ->get();
