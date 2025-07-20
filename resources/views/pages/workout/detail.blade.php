@@ -29,7 +29,7 @@
             <div class="flex flex-col ">
                 @foreach ($data as $workout)
                     <div class="flex items-center gap-9">
-                        <img src="{{ $workout->image }}" alt="{{ $workout->name }}" class="w-1/5 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
+                        <img src="https://www.villagegym.co.uk/media/dz2mhj3y/untitled-19.jpg?width=1140&height=550&v=1da4f9a3da67d10" alt="{{ $workout->name }}" class="w-1/5 min-h-[200px] max-h-[200px] border-[1px] rounded-md object-cover">
                         <div>
                             <h1 class="font-medium ">{{ $workout->name }}:</h1>
                             <ul class="list-disc list-inside ms-4">

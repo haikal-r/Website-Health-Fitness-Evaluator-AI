@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/questionnaire/{step}', [QuestionnaireController::class, 'show'])->name('questionnaire.show');
     Route::post('/questionnaire/{step}', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
     Route::get('/result', [QuestionnaireController::class, 'result'])->name('result');
+    Route::post('/feedback', [QuestionnaireController::class, 'feedback'])->name('feedback');
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

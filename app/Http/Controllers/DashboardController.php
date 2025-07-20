@@ -18,37 +18,42 @@ class DashboardController extends BaseController
 
         $progressData = Progress::where('user_id', $this->user->id)->get();
 
-        $weeks = [];  
+        // … bagian atas tetap …
+
+        $weeks = [];
         $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
         foreach ($progressData as $data) {
-            $tanggal = $data->updated_at ?? 0;  
-            $weekNumber = $tanggal->weekOfYear ?? 0;  
-            $year = $tanggal->year ?? 0;  
+            $tanggal    = $data->updated_at;                 // kolom sudah nullable?
+            if (!$tanggal) continue;                         // skip baris tanpa tanggal
 
-            $dayName = Carbon::parse($tanggal)->format('l');
-            $dayIndex = array_search($dayName, $daysOfWeek); 
+            $year       = $tanggal->year;
+            $weekNumber = $tanggal->weekOfYear;
 
-            if (!isset($weeks[$year][$weekNumber])) {
-                $weeks[$year][$weekNumber] = [0, 0, 0, 0, 0, 0, 0];  
-            }
+            $dayIndex   = $tanggal->dayOfWeekIso - 1;        // 0 = Monday, …, 6 = Sunday
 
+            $weeks[$year][$weekNumber] ??= array_fill(0, 7, null);
             $weeks[$year][$weekNumber][$dayIndex] = $data->weight;
         }
 
-        $weekLabels = [];
-        $weekData = [];
+        /** ------------- handle jika tidak ada data ------------- */
+        if (empty($weeks)) {
+            return view('dashboard', [
+                'userWeight' => $userWeight,
+                'userBMI'    => $userBMI,
+                'weights'    => json_encode(array_fill(0, 7, null))
+            ]);
+        }
 
-        $latestWeekNumber = max(array_keys($weeks[$year])); 
-        $latestWeekData = $weeks[$year][$latestWeekNumber]; 
-
-        $weekLabels[] = "Minggu $latestWeekNumber"; 
-        $weekData[] = $latestWeekData; 
+        /** ------------- ambil minggu terbaru ------------- */
+        $latestYear       = max(array_keys($weeks));
+        $latestWeekNumber = max(array_keys($weeks[$latestYear]));
+        $latestWeekData   = $weeks[$latestYear][$latestWeekNumber];
 
         return view('dashboard', [
             'userWeight' => $userWeight,
-            'userBMI' => $userBMI,
-            'weights' => json_encode($latestWeekData)
+            'userBMI'    => $userBMI,
+            'weights'    => json_encode($latestWeekData)
         ]);
     }
 

@@ -44,7 +44,6 @@ class RegisterController extends Controller
             ]);
         }
         
-        
         Auth::login($user);
         
         return redirect()->intended('questionnaire/1')->with('success', 'Registration successful. Please fill out this question');

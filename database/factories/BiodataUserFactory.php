@@ -29,7 +29,7 @@ class BiodataUserFactory extends Factory
             'birth_date' => $this->faker->date('Y-m-d', '2005-12-31'),
             'experience_level' => $this->faker->randomElement(['beginner', 'moderate', 'expert']),
             'activity_level' => $this->faker->randomElement(['not_active', 'quite_active', 'active']),
-            'training_duration' => $this->faker->randomElement(['20_minutes', '30_minutes', '60_minutes']),
+            'training_duration' => $this->faker->randomElement(['20_minute', '30_minute', '60_minute']),
             'accessibility' => $this->faker->randomElement(['no_equipment', 'with_equipment', 'both']),
             'dietary_preferences' => $this->faker->randomElement(['none', 'vegan', 'gluten', 'pescatarian', 'vegatarian']),
         ];

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image');
-            $table->decimal('calories');
-            $table->decimal('protein');
-            $table->decimal('fat');
-            $table->decimal('carbs');
+            $table->string('name')->nullable();
+            $table->string('image')->nullable();
+            $table->decimal('calories')->nullable();
+            $table->decimal('protein')->nullable();
+            $table->decimal('fat')->nullable();
+            $table->decimal('carbs')->nullable();
             $table->timestamps();
         });
     }
